@@ -17,6 +17,21 @@
             font-weight: bold;
             border-bottom: 2px solid #00ff66;
         }
+        .lang-switch {
+            margin-top: 10px;
+        }
+        .lang-btn {
+            background-color: #00ff66;
+            color: #000;
+            padding: 8px 20px;
+            border-radius: 8px;
+            font-size: 16px;
+            text-decoration: none;
+            margin: 5px;
+            display: inline-block;
+            font-weight: bold;
+            cursor: pointer;
+        }
         .hero {
             padding: 80px 20px;
         }
@@ -52,19 +67,41 @@
 
 <header>
     RecToom
+    <div class="lang-switch">
+        <span class="lang-btn" onclick="setLang('en')">English</span>
+        <span class="lang-btn" onclick="setLang('fr')">Français</span>
+    </div>
 </header>
 
 <div class="hero">
-    <h1>Welcome to RecToom</h1>
-    <p>A new generation of social gaming.</p>
+    <h1 id="title">Welcome to RecToom</h1>
+    <p id="subtitle">A new generation of social gaming.</p>
 
-    <a class="btn" href="#">Enter RecToom</a>
-    <a class="btn" href="#">Join Discord</a>
+    <a class="btn" id="enterBtn" href="#">Enter RecToom</a>
+    <a class="btn" id="discordBtn" href="#">Join Discord</a>
 </div>
 
-<footer>
+<footer id="footer">
     RecToom © 2026 — Powered by Nexora
 </footer>
+
+<script>
+function setLang(lang) {
+    if (lang === 'fr') {
+        document.getElementById("title").innerText = "Bienvenue sur RecToom";
+        document.getElementById("subtitle").innerText = "Une nouvelle génération de jeu social.";
+        document.getElementById("enterBtn").innerText = "Entrer dans RecToom";
+        document.getElementById("discordBtn").innerText = "Rejoindre Discord";
+        document.getElementById("footer").innerText = "RecToom © 2026 — Propulsé par Nexora";
+    } else {
+        document.getElementById("title").innerText = "Welcome to RecToom";
+        document.getElementById("subtitle").innerText = "A new generation of social gaming.";
+        document.getElementById("enterBtn").innerText = "Enter RecToom";
+        document.getElementById("discordBtn").innerText = "Join Discord";
+        document.getElementById("footer").innerText = "RecToom © 2026 — Powered by Nexora";
+    }
+}
+</script>
 
 </body>
 </html>
