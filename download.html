@@ -93,7 +93,13 @@
 
 <script>
 function notReleased() {
-    alert("RecToom is not released yet. Sorry!");
+    const titleText = document.getElementById("title").innerText;
+
+    if (titleText.includes("Télécharger")) {
+        alert("RecToom n'est pas encore sorti. Désolé !");
+    } else {
+        alert("RecToom is not released yet. Sorry!");
+    }
 }
 
 function setLang(lang) {
