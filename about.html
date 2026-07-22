@@ -93,7 +93,7 @@
         RecToom is designed to be your digital home.
     </p>
 
-    <a class="btn" href="index.html">← Retour au site principal</a>
+    <a class="btn" id="backBtn" href="index.html">← Back to Home</a>
 </div>
 
 <footer id="footer">
@@ -107,12 +107,14 @@ function setLang(lang) {
         document.getElementById("p1").innerText = "RecToom est une nouvelle génération de jeu social. Notre mission est de rassembler les joueurs dans un monde amusant, créatif et immersif.";
         document.getElementById("p2").innerText = "Construit avec passion et propulsé par Nexora, RecToom se concentre sur la communauté, l’innovation et une expérience unique accessible à tous.";
         document.getElementById("p3").innerText = "Que vous exploriez des mondes, rencontriez de nouvelles personnes ou créiez vos propres aventures, RecToom est conçu pour être votre maison numérique.";
+        document.getElementById("backBtn").innerText = "← Retour au site principal";
         document.getElementById("footer").innerText = "RecToom © 2026 — Propulsé par Nexora";
     } else {
         document.getElementById("title").innerText = "About RecToom";
         document.getElementById("p1").innerText = "RecToom is a new generation of social gaming. Our mission is to bring players together in a fun, creative, and immersive world.";
         document.getElementById("p2").innerText = "Built with passion and powered by Nexora, RecToom focuses on community, innovation, and a unique gaming experience accessible to everyone.";
         document.getElementById("p3").innerText = "Whether you're exploring worlds, meeting new people, or creating your own adventures, RecToom is designed to be your digital home.";
+        document.getElementById("backBtn").innerText = "← Back to Home";
         document.getElementById("footer").innerText = "RecToom © 2026 — Powered by Nexora";
     }
 }
