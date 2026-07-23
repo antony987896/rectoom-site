@@ -3,11 +3,10 @@ function setLang(lang) {
         document.getElementById("title").innerText = "Bienvenue sur RecToom";
         document.getElementById("subtitle").innerText = "Une nouvelle génération de jeu social.";
         document.getElementById("enterBtn").innerText = "Entrer dans RecToom";
-        document.getElementById("discordBtn").innerText = "Rejoindre Le Discord";
+        document.getElementById("discordBtn").innerText = "Rejoindre le Discord";
         document.getElementById("aboutBtn").innerText = "À propos";
         document.getElementById("footer").innerText = "RecToom © 2026 — Propulsé par Nexora";
 
-        // Traduction des boutons de connexion
         document.getElementById("loginBtn").innerText = "Se connecter";
         document.getElementById("registerBtn").innerText = "S'inscrire";
 
@@ -19,7 +18,6 @@ function setLang(lang) {
         document.getElementById("aboutBtn").innerText = "About";
         document.getElementById("footer").innerText = "RecToom © 2026 — Powered by Nexora";
 
-        // Traduction des boutons de connexion
         document.getElementById("loginBtn").innerText = "Login";
         document.getElementById("registerBtn").innerText = "Register";
     }
