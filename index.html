@@ -87,8 +87,8 @@
 
     <!-- Boutons Se connecter / S'inscrire -->
     <div class="auth-buttons">
-        <a class="auth-btn" href="login.html">Se connecter</a>
-        <a class="auth-btn" href="register.html">S'inscrire</a>
+        <a class="auth-btn" id="loginBtn" href="login.html">Se connecter</a>
+        <a class="auth-btn" id="registerBtn" href="register.html">S'inscrire</a>
     </div>
 
     <div class="lang-switch">
@@ -119,6 +119,11 @@ function setLang(lang) {
         document.getElementById("discordBtn").innerText = "Rejoindre Le Discord";
         document.getElementById("aboutBtn").innerText = "À propos";
         document.getElementById("footer").innerText = "RecToom © 2026 — Propulsé par Nexora";
+
+        // Traduction des boutons de connexion
+        document.getElementById("loginBtn").innerText = "Se connecter";
+        document.getElementById("registerBtn").innerText = "S'inscrire";
+
     } else {
         document.getElementById("title").innerText = "Welcome to RecToom";
         document.getElementById("subtitle").innerText = "A new generation of social gaming.";
@@ -126,6 +131,10 @@ function setLang(lang) {
         document.getElementById("discordBtn").innerText = "Join The Discord";
         document.getElementById("aboutBtn").innerText = "About";
         document.getElementById("footer").innerText = "RecToom © 2026 — Powered by Nexora";
+
+        // Traduction des boutons de connexion
+        document.getElementById("loginBtn").innerText = "Login";
+        document.getElementById("registerBtn").innerText = "Register";
     }
 }
 </script>
