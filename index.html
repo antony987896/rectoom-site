@@ -17,6 +17,23 @@
             font-weight: bold;
             border-bottom: 2px solid #00ff66;
         }
+
+        /* Boutons Se connecter / S'inscrire */
+        .auth-buttons {
+            margin-top: 10px;
+        }
+        .auth-btn {
+            background-color: #00ff66;
+            color: #000;
+            padding: 8px 20px;
+            border-radius: 8px;
+            font-size: 16px;
+            text-decoration: none;
+            margin: 5px;
+            display: inline-block;
+            font-weight: bold;
+        }
+
         .lang-switch {
             margin-top: 10px;
         }
@@ -67,6 +84,13 @@
 
 <header>
     RecToom
+
+    <!-- Boutons Se connecter / S'inscrire -->
+    <div class="auth-buttons">
+        <a class="auth-btn" href="login.html">Se connecter</a>
+        <a class="auth-btn" href="register.html">S'inscrire</a>
+    </div>
+
     <div class="lang-switch">
         <span class="lang-btn" onclick="setLang('en')">English</span>
         <span class="lang-btn" onclick="setLang('fr')">Français</span>
