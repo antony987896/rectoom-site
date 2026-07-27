@@ -64,20 +64,42 @@
     <input type="email" id="email" placeholder="Adresse email">
     <input type="password" id="password" placeholder="Mot de passe">
 
-    <div class="btn" onclick="notAvailable()" id="registerBtn">S'inscrire</div>
+    <div class="btn" id="registerBtn">S'inscrire</div>
 
     <br><br>
     <a class="btn" href="index.html">← Retour</a>
+
+    <p id="registerMessage"></p>
 </div>
 
 <footer id="footer">
     RecToom © 2026 — Propulsé par Nexora
 </footer>
 
-<script>
-function notAvailable() {
-    alert("La création de compte n'est pas encore disponible.");
-}
+<script type="module">
+    import { register } from "./index.js";
+
+    document.getElementById("registerBtn").addEventListener("click", () => {
+        const username = document.getElementById("username").value;
+        const email = document.getElementById("email").value;
+        const password = document.getElementById("password").value;
+
+        if (!username || !email || !password) {
+            document.getElementById("registerMessage").innerText = "Veuillez remplir tous les champs.";
+            return;
+        }
+
+        register(email, password)
+            .then(() => {
+                document.getElementById("registerMessage").innerText = "Compte créé avec succès !";
+                setTimeout(() => {
+                    window.location.href = "index.html";
+                }, 1500);
+            })
+            .catch((error) => {
+                document.getElementById("registerMessage").innerText = "Erreur : " + error.message;
+            });
+    });
 </script>
 
 </body>
