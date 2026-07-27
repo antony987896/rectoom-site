@@ -87,11 +87,22 @@
     // Langue par défaut
     setLang("fr");
 
-    // Boutons langue
-    document.getElementById("langEN").addEventListener("click", () => setLang("en"));
-    document.getElementById("langFR").addEventListener("click", () => setLang("fr"));
+    // --- Bilingue ---
+    document.getElementById("langEN").addEventListener("click", () => {
+        setLang("en");
+        document.getElementById("email").placeholder = "Email address";
+        document.getElementById("password").placeholder = "Password";
+        document.getElementById("loginBtn").innerText = "Login";
+    });
 
-    // Connexion Firebase
+    document.getElementById("langFR").addEventListener("click", () => {
+        setLang("fr");
+        document.getElementById("email").placeholder = "Adresse email";
+        document.getElementById("password").placeholder = "Mot de passe";
+        document.getElementById("loginBtn").innerText = "Connexion";
+    });
+
+    // --- Connexion Firebase ---
     document.getElementById("loginBtn").addEventListener("click", () => {
         const email = document.getElementById("email").value;
         const password = document.getElementById("password").value;
