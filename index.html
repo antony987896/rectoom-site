@@ -2,7 +2,7 @@
 <html lang="fr">
 <head>
     <meta charset="UTF-8">
-    <title>RecToom</title>
+    <title>RecToom - Accueil</title>
     <style>
         body {
             background-color: #000;
@@ -17,6 +17,15 @@
             font-weight: bold;
             border-bottom: 2px solid #00ff66;
         }
+        h1 {
+            font-size: 48px;
+            margin-top: 40px;
+        }
+        p {
+            font-size: 22px;
+            opacity: 0.8;
+            margin-bottom: 40px;
+        }
         .btn {
             background-color: #00ff66;
             color: #000;
@@ -25,9 +34,8 @@
             font-size: 18px;
             text-decoration: none;
             font-weight: bold;
-            cursor: pointer;
             display: inline-block;
-            margin: 10px;
+            margin: 15px;
         }
         footer {
             margin-top: 60px;
@@ -41,44 +49,26 @@
 <body>
 
 <header>
-    RecToom
+    RecToom — Accueil
 </header>
-
-<!-- Boutons Login / Register -->
-<div style="margin-top: 20px;">
-    <a class="btn" href="login.html" id="loginBtn">Se connecter</a>
-    <a class="btn" href="register.html" id="registerBtn">S'inscrire</a>
-</div>
-
-<!-- Boutons langue -->
-<div style="margin-top: 10px;">
-    <button class="btn" id="langEN">English</button>
-    <button class="btn" id="langFR">Français</button>
-</div>
 
 <h1 id="title">Bienvenue sur RecToom</h1>
 <p id="subtitle">Une nouvelle génération de jeu social.</p>
 
-<div style="margin-top: 40px;">
-    <a class="btn" id="enterBtn" href="#">Entrer dans RecToom</a>
-    <a class="btn" id="discordBtn" href="#">Rejoindre le Discord</a>
-    <a class="btn" id="aboutBtn" href="#">À propos</a>
-</div>
+<!-- Boutons -->
+<a class="btn" id="aboutBtn" href="about.html">À propos</a>
+<a class="btn" id="discordBtn" href="https://discord.gg/eWxJncTr2j">Rejoindre le Discord</a>
+<a class="btn" id="enterBtn" href="download.html">Entrer dans RecToom</a>
 
 <footer id="footer">
     RecToom © 2026 — Propulsé par Nexora
 </footer>
 
-<!-- Import du module principal -->
 <script type="module">
-    import { setLang } from "./main.js";
-
-    // Boutons langue
-    document.getElementById("langEN").addEventListener("click", () => setLang("en"));
-    document.getElementById("langFR").addEventListener("click", () => setLang("fr"));
+    import { setGlobalLang } from "./main.js";
 
     // Langue par défaut
-    setLang("fr");
+    setGlobalLang("fr");
 </script>
 
 </body>
