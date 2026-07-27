@@ -2,7 +2,7 @@
 <html lang="fr">
 <head>
     <meta charset="UTF-8">
-    <title>RecToom - S'inscrire</title>
+    <title>RecToom - Inscription</title>
     <style>
         body {
             background-color: #000;
@@ -54,7 +54,7 @@
 <body>
 
 <header>
-    RecToom — S'inscrire
+    RecToom — Inscription
 </header>
 
 <!-- Boutons langue -->
@@ -89,25 +89,35 @@
     setLang("fr");
 
     // Boutons langue
-    document.getElementById("langEN").addEventListener("click", () => setLang("en"));
-    document.getElementById("langFR").addEventListener("click", () => setLang("fr"));
+    document.getElementById("langEN").addEventListener("click", () => {
+        setLang("en");
+        document.getElementById("username").placeholder = "Username";
+        document.getElementById("email").placeholder = "Email address";
+        document.getElementById("password").placeholder = "Password";
+    });
+
+    document.getElementById("langFR").addEventListener("click", () => {
+        setLang("fr");
+        document.getElementById("username").placeholder = "Nom d'utilisateur";
+        document.getElementById("email").placeholder = "Adresse email";
+        document.getElementById("password").placeholder = "Mot de passe";
+    });
 
     // Inscription Firebase
     document.getElementById("registerBtn").addEventListener("click", () => {
-        const username = document.getElementById("username").value;
         const email = document.getElementById("email").value;
         const password = document.getElementById("password").value;
 
-        if (!username || !email || !password) {
+        if (!email || !password) {
             document.getElementById("registerMessage").innerText = "Veuillez remplir tous les champs.";
             return;
         }
 
         register(email, password)
             .then(() => {
-                document.getElementById("registerMessage").innerText = "Compte créé avec succès !";
+                document.getElementById("registerMessage").innerText = "Inscription réussie !";
                 setTimeout(() => {
-                    window.location.href = "profile.html";
+                    window.location.href = "login.html";
                 }, 1500);
             })
             .catch((error) => {
