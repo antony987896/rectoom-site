@@ -1,5 +1,5 @@
 // --- Système de langue RecToom ---
-export function setLang(lang) {
+export function setGlobalLang(lang) {
 
     // Fonction sécurisée pour éviter les bugs sur register.html
     function safeSet(id, text) {
