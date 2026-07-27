@@ -1,3 +1,4 @@
+// --- Système de langue RecToom ---
 function setLang(lang) {
     if (lang === 'fr') {
         document.getElementById("title").innerText = "Bienvenue sur RecToom";
@@ -22,3 +23,52 @@ function setLang(lang) {
         document.getElementById("registerBtn").innerText = "Register";
     }
 }
+
+
+// --- Firebase Authentication ---
+import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
+import { 
+    getAuth,
+    createUserWithEmailAndPassword,
+    signInWithEmailAndPassword,
+    signOut,
+    onAuthStateChanged
+} from "https://www.gstatic.com/firebasejs/10.7.1/firebase-auth.js";
+
+// Configuration Firebase
+const firebaseConfig = {
+  apiKey: "AIzaSyBKDP95h9aH8Dq3OYMYPZZghy72kklb3Bg",
+  authDomain: "rectoom-site.firebaseapp.com",
+  projectId: "rectoom-site",
+  storageBucket: "rectoom-site.firebasestorage.app",
+  messagingSenderId: "907780061957",
+  appId: "1:907780061957:web:5a5f856ee56a372fb4956c"
+};
+
+// Initialisation
+const app = initializeApp(firebaseConfig);
+const auth = getAuth(app);
+
+// Inscription
+function register(email, password) {
+    return createUserWithEmailAndPassword(auth, email, password);
+}
+
+// Connexion
+function login(email, password) {
+    return signInWithEmailAndPassword(auth, email, password);
+}
+
+// Déconnexion
+function logout() {
+    return signOut(auth);
+}
+
+// Listener de session
+onAuthStateChanged(auth, (user) => {
+    if (user) {
+        console.log("Connecté :", user.email);
+    } else {
+        console.log("Déconnecté");
+    }
+});
