@@ -50,17 +50,17 @@ const app = initializeApp(firebaseConfig);
 const auth = getAuth(app);
 
 // Inscription
-function register(email, password) {
+export function register(email, password) {
     return createUserWithEmailAndPassword(auth, email, password);
 }
 
 // Connexion
-function login(email, password) {
+export function login(email, password) {
     return signInWithEmailAndPassword(auth, email, password);
 }
 
 // Déconnexion
-function logout() {
+export function logout() {
     return signOut(auth);
 }
 
