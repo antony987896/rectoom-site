@@ -35,7 +35,7 @@
         }
         .content {
             padding: 50px 20px;
-            max-width: 800px;
+            max-width: 900px;
             margin: auto;
         }
         h1 {
@@ -46,6 +46,43 @@
             font-size: 20px;
             line-height: 1.6;
             margin-bottom: 20px;
+        }
+        .team-section {
+            margin-top: 60px;
+        }
+        .team-title {
+            font-size: 40px;
+            margin-bottom: 30px;
+        }
+        .team-container {
+            display: flex;
+            flex-direction: column;
+            gap: 40px;
+            align-items: center;
+        }
+        .member {
+            background-color: #0a0a0a;
+            border: 2px solid #00ff66;
+            padding: 20px;
+            border-radius: 12px;
+            width: 90%;
+            max-width: 500px;
+        }
+        .member img {
+            width: 160px;
+            height: 160px;
+            border-radius: 12px;
+            border: 3px solid #00ff66;
+            margin-bottom: 15px;
+        }
+        .member-name {
+            font-size: 28px;
+            font-weight: bold;
+        }
+        .member-role {
+            font-size: 20px;
+            opacity: 0.8;
+            margin-bottom: 10px;
         }
         .btn {
             background-color: #00ff66;
@@ -93,6 +130,38 @@
         RecToom is designed to be your digital home.
     </p>
 
+    <!-- TEAM SECTION -->
+    <div class="team-section">
+        <h2 class="team-title" id="teamTitle">RecToom Team</h2>
+
+        <div class="team-container">
+
+            <!-- Antony -->
+            <div class="member">
+                <img src="antony_profile.png" alt="Antony">
+                <div class="member-name">Antony</div>
+                <div class="member-role" id="role1">Owner / Founder</div>
+                <p id="desc1">
+                    Antony is the creator of RecToom, leading the project with vision,
+                    creativity, and dedication to building a new generation of social gaming.
+                </p>
+            </div>
+
+            <!-- SUNplayz_Official -->
+            <div class="member">
+                <img src="sunplayz_profile.png" alt="SUNplayz_Official">
+                <div class="member-name">SUNplayz_Official</div>
+                <div class="member-role" id="role2">Co‑Owner / Co‑Founder</div>
+                <p id="desc2">
+                    SUNplayz_Official helps shape RecToom with innovative ideas,
+                    community support, and strong involvement in the development.
+                </p>
+            </div>
+
+        </div>
+    </div>
+
+    <br><br>
     <a class="btn" id="backBtn" href="index.html">← Back to Home</a>
 </div>
 
@@ -107,13 +176,28 @@ function setLang(lang) {
         document.getElementById("p1").innerText = "RecToom est une nouvelle génération de jeu social. Notre mission est de rassembler les joueurs dans un monde amusant, créatif et immersif.";
         document.getElementById("p2").innerText = "Construit avec passion et propulsé par Nexora, RecToom se concentre sur la communauté, l’innovation et une expérience unique accessible à tous.";
         document.getElementById("p3").innerText = "Que vous exploriez des mondes, rencontriez de nouvelles personnes ou créiez vos propres aventures, RecToom est conçu pour être votre maison numérique.";
+
+        document.getElementById("teamTitle").innerText = "Équipe RecToom";
+        document.getElementById("role1").innerText = "Owner / Fondateur";
+        document.getElementById("role2").innerText = "Co‑Owner / Co‑Fondateur";
+        document.getElementById("desc1").innerText = "Antony est le créateur de RecToom, guidant le projet avec vision, créativité et passion pour construire une nouvelle génération de jeu social.";
+        document.getElementById("desc2").innerText = "SUNplayz_Official contribue à RecToom avec des idées innovantes, du soutien communautaire et une forte implication dans le développement.";
+
         document.getElementById("backBtn").innerText = "← Retour au site principal";
         document.getElementById("footer").innerText = "RecToom © 2026 — Propulsé par Nexora";
+
     } else {
         document.getElementById("title").innerText = "About RecToom";
         document.getElementById("p1").innerText = "RecToom is a new generation of social gaming. Our mission is to bring players together in a fun, creative, and immersive world.";
         document.getElementById("p2").innerText = "Built with passion and powered by Nexora, RecToom focuses on community, innovation, and a unique gaming experience accessible to everyone.";
         document.getElementById("p3").innerText = "Whether you're exploring worlds, meeting new people, or creating your own adventures, RecToom is designed to be your digital home.";
+
+        document.getElementById("teamTitle").innerText = "RecToom Team";
+        document.getElementById("role1").innerText = "Owner / Founder";
+        document.getElementById("role2").innerText = "Co‑Owner / Co‑Founder";
+        document.getElementById("desc1").innerText = "Antony is the creator of RecToom, leading the project with vision, creativity, and dedication to building a new generation of social gaming.";
+        document.getElementById("desc2").innerText = "SUNplayz_Official helps shape RecToom with innovative ideas, community support, and strong involvement in the development.";
+
         document.getElementById("backBtn").innerText = "← Back to Home";
         document.getElementById("footer").innerText = "RecToom © 2026 — Powered by Nexora";
     }
