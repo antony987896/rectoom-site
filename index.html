@@ -2,7 +2,7 @@
 <html lang="fr">
 <head>
     <meta charset="UTF-8">
-    <title>RecToom - Accueil</title>
+    <title>RecToom</title>
     <style>
         body {
             background-color: #000;
@@ -17,63 +17,20 @@
             font-weight: bold;
             border-bottom: 2px solid #00ff66;
         }
-
-        .auth-buttons {
-            margin-top: 10px;
-        }
-        .auth-btn {
-            background-color: #00ff66;
-            color: #000;
-            padding: 8px 20px;
-            border-radius: 8px;
-            font-size: 16px;
-            text-decoration: none;
-            margin: 5px;
-            display: inline-block;
-            font-weight: bold;
-        }
-
-        .lang-switch {
-            margin-top: 10px;
-        }
-        .lang-btn {
-            background-color: #00ff66;
-            color: #000;
-            padding: 8px 20px;
-            border-radius: 8px;
-            font-size: 16px;
-            text-decoration: none;
-            margin: 5px;
-            display: inline-block;
-            font-weight: bold;
-            cursor: pointer;
-        }
-
-        .hero {
-            padding: 80px 20px;
-        }
-        .hero h1 {
-            font-size: 60px;
-            margin-bottom: 10px;
-        }
-        .hero p {
-            font-size: 22px;
-            margin-bottom: 30px;
-        }
         .btn {
             background-color: #00ff66;
             color: #000;
-            padding: 15px 30px;
+            padding: 12px 25px;
             border-radius: 8px;
-            font-size: 20px;
+            font-size: 18px;
             text-decoration: none;
-            margin: 10px;
-            display: inline-block;
             font-weight: bold;
+            cursor: pointer;
+            display: inline-block;
+            margin: 10px;
         }
-
         footer {
-            margin-top: 80px;
+            margin-top: 60px;
             padding: 20px;
             font-size: 14px;
             opacity: 0.7;
@@ -85,32 +42,44 @@
 
 <header>
     RecToom
-
-    <div class="auth-buttons">
-        <a class="auth-btn" id="loginBtn" href="login.html">Se connecter</a>
-        <a class="auth-btn" id="registerBtn" href="register.html">S'inscrire</a>
-    </div>
-
-    <div class="lang-switch">
-        <span class="lang-btn" onclick="setLang('en')">English</span>
-        <span class="lang-btn" onclick="setLang('fr')">Français</span>
-    </div>
 </header>
 
-<div class="hero">
-    <h1 id="title">Bienvenue sur RecToom</h1>
-    <p id="subtitle">Une nouvelle génération de jeu social.</p>
+<!-- Boutons Login / Register -->
+<div style="margin-top: 20px;">
+    <a class="btn" href="login.html" id="loginBtn">Se connecter</a>
+    <a class="btn" href="register.html" id="registerBtn">S'inscrire</a>
+</div>
 
-    <a class="btn" id="enterBtn" href="download.html">Entrer dans RecToom</a>
-    <a class="btn" id="discordBtn" href="https://discord.gg/eWxJncTr2j" target="_blank">Rejoindre le Discord</a>
-    <a class="btn" id="aboutBtn" href="about.html">À propos</a>
+<!-- Boutons langue -->
+<div style="margin-top: 10px;">
+    <button class="btn" id="langEN">English</button>
+    <button class="btn" id="langFR">Français</button>
+</div>
+
+<h1 id="title">Bienvenue sur RecToom</h1>
+<p id="subtitle">Une nouvelle génération de jeu social.</p>
+
+<div style="margin-top: 40px;">
+    <a class="btn" id="enterBtn" href="#">Entrer dans RecToom</a>
+    <a class="btn" id="discordBtn" href="#">Rejoindre le Discord</a>
+    <a class="btn" id="aboutBtn" href="#">À propos</a>
 </div>
 
 <footer id="footer">
     RecToom © 2026 — Propulsé par Nexora
 </footer>
 
-<script src="index.js?v=2"></script>
+<!-- Import du module principal -->
+<script type="module">
+    import { setLang } from "./index.js";
+
+    // Boutons langue
+    document.getElementById("langEN").addEventListener("click", () => setLang("en"));
+    document.getElementById("langFR").addEventListener("click", () => setLang("fr"));
+
+    // Langue par défaut
+    setLang("fr");
+</script>
 
 </body>
 </html>
