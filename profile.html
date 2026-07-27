@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>RecToom - Profil</title>
+    <style>
+        body {
+            background-color: #000;
+            color: #00ff66;
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin: 0;
+        }
+        header {
+            padding: 20px;
+            font-size: 32px;
+            font-weight: bold;
+            border-bottom: 2px solid #00ff66;
+        }
+        .btn {
+            background-color: #00ff66;
+            color: #000;
+            padding: 12px 25px;
+            border-radius: 8px;
+            font-size: 18px;
+            text-decoration: none;
+            font-weight: bold;
+            cursor: pointer;
+            display: inline-block;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+
+<header>
+    RecToom — Profil
+</header>
+
+<h1>Bienvenue !</h1>
+<p id="userEmail">Chargement...</p>
+
+<div class="btn" id="logoutBtn">Se déconnecter</div>
+
+<script type="module">
+    import { logout } from "./index.js";
+    import { getAuth, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-auth.js";
+
+    const auth = getAuth();
+
+    // Protection : si pas connecté → retour à l'accueil
+    onAuthStateChanged(auth, (user) => {
+        if (!user) {
+            window.location.href = "index.html";
+        } else {
+            document.getElementById("userEmail").innerText = "Connecté en tant que : " + user.email;
+        }
+    });
+
+    document.getElementById("logoutBtn").addEventListener("click", () => {
+        logout().then(() => {
+            window.location.href = "index.html";
+        });
+    });
+</script>
+
+</body>
+</html>
