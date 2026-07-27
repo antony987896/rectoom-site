@@ -107,8 +107,8 @@
 <header>
     RecToom — About
     <div class="lang-switch">
-        <span class="lang-btn" onclick="setLang('en')">English</span>
-        <span class="lang-btn" onclick="setLang('fr')">Français</span>
+        <span class="lang-btn" onclick="setAboutLang('en')">English</span>
+        <span class="lang-btn" onclick="setAboutLang('fr')">Français</span>
     </div>
 </header>
 
@@ -170,7 +170,7 @@
 </footer>
 
 <script>
-function setLang(lang) {
+function setAboutLang(lang) {
     if (lang === 'fr') {
         document.getElementById("title").innerText = "À propos de RecToom";
         document.getElementById("p1").innerText = "RecToom est une nouvelle génération de jeu social. Notre mission est de rassembler les joueurs dans un monde amusant, créatif et immersif.";
