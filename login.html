@@ -57,13 +57,19 @@
     RecToom — Connexion
 </header>
 
+<!-- Boutons langue -->
+<div style="margin-top: 10px;">
+    <button class="btn" id="langEN">English</button>
+    <button class="btn" id="langFR">Français</button>
+</div>
+
 <div class="content">
     <h1 id="title">Se connecter</h1>
 
     <input type="email" id="email" placeholder="Adresse email">
     <input type="password" id="password" placeholder="Mot de passe">
 
-    <div class="btn" id="loginBtn2">Connexion</div>
+    <div class="btn" id="loginBtn">Connexion</div>
 
     <br><br>
     <a class="btn" href="index.html">← Retour</a>
@@ -78,11 +84,22 @@
 <script type="module">
     import { login, setLang } from "./main.js";
 
+    // Langue par défaut
     setLang("fr");
 
-    document.getElementById("loginBtn2").addEventListener("click", () => {
+    // Boutons langue
+    document.getElementById("langEN").addEventListener("click", () => setLang("en"));
+    document.getElementById("langFR").addEventListener("click", () => setLang("fr"));
+
+    // Connexion Firebase
+    document.getElementById("loginBtn").addEventListener("click", () => {
         const email = document.getElementById("email").value;
         const password = document.getElementById("password").value;
+
+        if (!email || !password) {
+            document.getElementById("loginMessage").innerText = "Veuillez remplir tous les champs.";
+            return;
+        }
 
         login(email, password)
             .then(() => {
