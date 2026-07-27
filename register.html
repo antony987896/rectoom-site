@@ -57,6 +57,12 @@
     RecToom — S'inscrire
 </header>
 
+<!-- Boutons langue -->
+<div style="margin-top: 10px;">
+    <button class="btn" id="langEN">English</button>
+    <button class="btn" id="langFR">Français</button>
+</div>
+
 <div class="content">
     <h1 id="title">Créer un compte</h1>
 
@@ -76,12 +82,15 @@
     RecToom © 2026 — Propulsé par Nexora
 </footer>
 
-<!-- Script Firebase + Langue + Inscription -->
 <script type="module">
     import { register, setLang } from "./index.js";
 
     // Langue par défaut
     setLang("fr");
+
+    // Boutons langue
+    document.getElementById("langEN").addEventListener("click", () => setLang("en"));
+    document.getElementById("langFR").addEventListener("click", () => setLang("fr"));
 
     // Inscription Firebase
     document.getElementById("registerBtn").addEventListener("click", () => {
@@ -98,7 +107,7 @@
             .then(() => {
                 document.getElementById("registerMessage").innerText = "Compte créé avec succès !";
                 setTimeout(() => {
-                    window.location.href = "index.html";
+                    window.location.href = "profile.html";
                 }, 1500);
             })
             .catch((error) => {
