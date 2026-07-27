@@ -1,5 +1,5 @@
 // --- Système de langue RecToom ---
-function setLang(lang) {
+export function setLang(lang) {
     if (lang === 'fr') {
         document.getElementById("title").innerText = "Bienvenue sur RecToom";
         document.getElementById("subtitle").innerText = "Une nouvelle génération de jeu social.";
