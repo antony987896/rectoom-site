@@ -1,1 +1,120 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>RecToom - S'inscrire</title>
+    <style>
+        body {
+            background-color: #000;
+            color: #00ff66;
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin: 0;
+        }
+        header {
+            padding: 20px;
+            font-size: 32px;
+            font-weight: bold;
+            border-bottom: 2px solid #00ff66;
+        }
+        .content {
+            padding: 60px 20px;
+            max-width: 400px;
+            margin: auto;
+        }
+        input {
+            width: 90%;
+            padding: 12px;
+            margin: 10px 0;
+            border-radius: 8px;
+            border: none;
+            font-size: 16px;
+        }
+        .btn {
+            background-color: #00ff66;
+            color: #000;
+            padding: 12px 25px;
+            border-radius: 8px;
+            font-size: 18px;
+            text-decoration: none;
+            font-weight: bold;
+            cursor: pointer;
+            display: inline-block;
+            margin-top: 20px;
+        }
+        footer {
+            margin-top: 60px;
+            padding: 20px;
+            font-size: 14px;
+            opacity: 0.7;
+            border-top: 2px solid #00ff66;
+        }
+    </style>
+</head>
+<body>
 
+<header>
+    RecToom — S'inscrire
+</header>
+
+<!-- Boutons langue -->
+<div style="margin-top: 10px;">
+    <button class="btn" id="langEN">English</button>
+    <button class="btn" id="langFR">Français</button>
+</div>
+
+<div class="content">
+    <h1 id="title">Créer un compte</h1>
+
+    <input type="text" id="username" placeholder="Nom d'utilisateur">
+    <input type="email" id="email" placeholder="Adresse email">
+    <input type="password" id="password" placeholder="Mot de passe">
+
+    <div class="btn" id="registerBtn">S'inscrire</div>
+
+    <br><br>
+    <a class="btn" href="index.html">← Retour</a>
+
+    <p id="registerMessage"></p>
+</div>
+
+<footer id="footer">
+    RecToom © 2026 — Propulsé par Nexora
+</footer>
+
+<script type="module">
+    import { register, setLang } from "./index.js";
+
+    // Langue par défaut
+    setLang("fr");
+
+    // Boutons langue
+    document.getElementById("langEN").addEventListener("click", () => setLang("en"));
+    document.getElementById("langFR").addEventListener("click", () => setLang("fr"));
+
+    // Inscription Firebase
+    document.getElementById("registerBtn").addEventListener("click", () => {
+        const username = document.getElementById("username").value;
+        const email = document.getElementById("email").value;
+        const password = document.getElementById("password").value;
+
+        if (!username || !email || !password) {
+            document.getElementById("registerMessage").innerText = "Veuillez remplir tous les champs.";
+            return;
+        }
+
+        register(email, password)
+            .then(() => {
+                document.getElementById("registerMessage").innerText = "Compte créé avec succès !";
+                setTimeout(() => {
+                    window.location.href = "profile.html";
+                }, 1500);
+            })
+            .catch((error) => {
+                document.getElementById("registerMessage").innerText = "Erreur : " + error.message;
+            });
+    });
+</script>
+
+</body>
+</html>
