@@ -2,7 +2,7 @@
 <html lang="fr">
 <head>
     <meta charset="UTF-8">
-    <title>RecToom - Accueil</title>
+    <title>RecToom - Home</title>
     <style>
         body {
             background-color: #000;
@@ -37,6 +37,16 @@
             display: inline-block;
             margin: 15px;
         }
+        .lang-btn {
+            background-color: transparent;
+            border: 2px solid #00ff66;
+            color: #00ff66;
+            padding: 8px 18px;
+            border-radius: 6px;
+            font-size: 16px;
+            margin: 5px;
+            cursor: pointer;
+        }
         footer {
             margin-top: 60px;
             padding: 20px;
@@ -49,16 +59,28 @@
 <body>
 
 <header>
-    RecToom — Accueil
+    RecToom — Home
 </header>
+
+<!-- Language Buttons -->
+<div>
+    <button class="lang-btn" id="frBtn">FR</button>
+    <button class="lang-btn" id="enBtn">EN</button>
+</div>
 
 <h1 id="title">Bienvenue sur RecToom</h1>
 <p id="subtitle">Une nouvelle génération de jeu social.</p>
 
-<!-- Boutons -->
+<!-- Main Buttons -->
 <a class="btn" id="aboutBtn" href="about.html">À propos</a>
 <a class="btn" id="discordBtn" href="https://discord.gg/eWxJncTr2j">Rejoindre le Discord</a>
 <a class="btn" id="enterBtn" href="download.html">Entrer dans RecToom</a>
+
+<!-- Login / Register -->
+<div>
+    <a class="btn" id="loginBtn" href="login.html">Se connecter</a>
+    <a class="btn" id="registerBtn" href="register.html">S'inscrire</a>
+</div>
 
 <footer id="footer">
     RecToom © 2026 — Propulsé par Nexora
@@ -67,8 +89,12 @@
 <script type="module">
     import { setGlobalLang } from "./main.js";
 
-    // Langue par défaut
+    // Default language
     setGlobalLang("fr");
+
+    // Language switch buttons
+    document.getElementById("frBtn").onclick = () => setGlobalLang("fr");
+    document.getElementById("enBtn").onclick = () => setGlobalLang("en");
 </script>
 
 </body>
