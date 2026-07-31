@@ -29,6 +29,16 @@
             display: inline-block;
             margin-top: 20px;
         }
+        .lang-btn {
+            background-color: transparent;
+            border: 2px solid #00ff66;
+            color: #00ff66;
+            padding: 8px 18px;
+            border-radius: 6px;
+            font-size: 16px;
+            margin: 5px;
+            cursor: pointer;
+        }
     </style>
 </head>
 <body>
@@ -37,26 +47,50 @@
     RecToom — Profil
 </header>
 
-<h1>Bienvenue !</h1>
+<!-- Language Buttons -->
+<div>
+    <button class="lang-btn" id="langEN">EN</button>
+    <button class="lang-btn" id="langFR">FR</button>
+</div>
+
+<h1 id="title">Bienvenue !</h1>
 <p id="userEmail">Chargement...</p>
 
 <div class="btn" id="logoutBtn">Se déconnecter</div>
 
 <script type="module">
-    import { logout } from "./main.js";
+    import { logout, setGlobalLang } from "./main.js";
     import { getAuth, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-auth.js";
 
     const auth = getAuth();
 
-    // Protection : si pas connecté → retour à l'accueil
+    // Default language
+    setGlobalLang("fr");
+
+    // Language Switch
+    document.getElementById("langEN").addEventListener("click", () => {
+        setGlobalLang("en");
+        document.getElementById("title").innerText = "Welcome!";
+        document.getElementById("logoutBtn").innerText = "Logout";
+    });
+
+    document.getElementById("langFR").addEventListener("click", () => {
+        setGlobalLang("fr");
+        document.getElementById("title").innerText = "Bienvenue !";
+        document.getElementById("logoutBtn").innerText = "Se déconnecter";
+    });
+
+    // Auth Protection
     onAuthStateChanged(auth, (user) => {
         if (!user) {
             window.location.href = "index.html";
         } else {
-            document.getElementById("userEmail").innerText = "Connecté en tant que : " + user.email;
+            document.getElementById("userEmail").innerText =
+                "Connecté en tant que : " + user.email;
         }
     });
 
+    // Logout
     document.getElementById("logoutBtn").addEventListener("click", () => {
         logout().then(() => {
             window.location.href = "index.html";
