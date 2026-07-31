@@ -57,7 +57,7 @@
     RecToom — Inscription
 </header>
 
-<!-- Boutons langue -->
+<!-- Language Buttons -->
 <div style="margin-top: 10px;">
     <button class="btn" id="langEN">English</button>
     <button class="btn" id="langFR">Français</button>
@@ -83,27 +83,29 @@
 </footer>
 
 <script type="module">
-    import { register, setLang } from "./main.js";
+    import { register, setGlobalLang } from "./main.js";
 
-    // Langue par défaut
-    setLang("fr");
+    // Default language
+    setGlobalLang("fr");
 
-    // Boutons langue
+    // --- Language Switch ---
     document.getElementById("langEN").addEventListener("click", () => {
-        setLang("en");
+        setGlobalLang("en");
         document.getElementById("username").placeholder = "Username";
         document.getElementById("email").placeholder = "Email address";
         document.getElementById("password").placeholder = "Password";
+        document.getElementById("registerBtn").innerText = "Register";
     });
 
     document.getElementById("langFR").addEventListener("click", () => {
-        setLang("fr");
+        setGlobalLang("fr");
         document.getElementById("username").placeholder = "Nom d'utilisateur";
         document.getElementById("email").placeholder = "Adresse email";
         document.getElementById("password").placeholder = "Mot de passe";
+        document.getElementById("registerBtn").innerText = "S'inscrire";
     });
 
-    // Inscription Firebase
+    // --- Firebase Registration ---
     document.getElementById("registerBtn").addEventListener("click", () => {
         const email = document.getElementById("email").value;
         const password = document.getElementById("password").value;
