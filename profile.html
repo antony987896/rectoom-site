@@ -8,27 +8,30 @@
             background-color: #000;
             color: #00ff66;
             font-family: Arial, sans-serif;
-            text-align: center;
             margin: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
         }
+
+        .card {
+            background-color: #0a0a0a;
+            border: 2px solid #00ff66;
+            border-radius: 12px;
+            padding: 40px;
+            width: 90%;
+            max-width: 420px;
+            text-align: center;
+            box-shadow: 0 0 20px #00ff66;
+        }
+
         header {
-            padding: 20px;
             font-size: 32px;
             font-weight: bold;
-            border-bottom: 2px solid #00ff66;
+            margin-bottom: 20px;
         }
-        .btn {
-            background-color: #00ff66;
-            color: #000;
-            padding: 12px 25px;
-            border-radius: 8px;
-            font-size: 18px;
-            text-decoration: none;
-            font-weight: bold;
-            cursor: pointer;
-            display: inline-block;
-            margin-top: 20px;
-        }
+
         .lang-btn {
             background-color: transparent;
             border: 2px solid #00ff66;
@@ -39,24 +42,43 @@
             margin: 5px;
             cursor: pointer;
         }
+
+        .btn {
+            background-color: #00ff66;
+            color: #000;
+            padding: 12px 25px;
+            border-radius: 8px;
+            font-size: 18px;
+            text-decoration: none;
+            font-weight: bold;
+            cursor: pointer;
+            display: inline-block;
+            margin-top: 25px;
+        }
+
+        #userEmail {
+            font-size: 18px;
+            margin-top: 10px;
+            opacity: 0.9;
+        }
     </style>
 </head>
 <body>
 
-<header>
-    RecToom — Profil
-</header>
+<div class="card">
+    <header>RecToom — Profil</header>
 
-<!-- Language Buttons -->
-<div>
-    <button class="lang-btn" id="langEN">EN</button>
-    <button class="lang-btn" id="langFR">FR</button>
+    <!-- Language Buttons -->
+    <div>
+        <button class="lang-btn" id="langEN">EN</button>
+        <button class="lang-btn" id="langFR">FR</button>
+    </div>
+
+    <h1 id="title">Bienvenue !</h1>
+    <p id="userEmail">Chargement...</p>
+
+    <div class="btn" id="logoutBtn">Se déconnecter</div>
 </div>
-
-<h1 id="title">Bienvenue !</h1>
-<p id="userEmail">Chargement...</p>
-
-<div class="btn" id="logoutBtn">Se déconnecter</div>
 
 <script type="module">
     import { logout, setGlobalLang } from "./main.js";
