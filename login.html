@@ -57,7 +57,7 @@
     RecToom — Connexion
 </header>
 
-<!-- Boutons langue -->
+<!-- Language Buttons -->
 <div style="margin-top: 10px;">
     <button class="btn" id="langEN">English</button>
     <button class="btn" id="langFR">Français</button>
@@ -82,27 +82,27 @@
 </footer>
 
 <script type="module">
-    import { login, setLang } from "./main.js";
+    import { login, setGlobalLang } from "./main.js";
 
-    // Langue par défaut
-    setLang("fr");
+    // Default language
+    setGlobalLang("fr");
 
-    // --- Bilingue ---
+    // --- Language Switch ---
     document.getElementById("langEN").addEventListener("click", () => {
-        setLang("en");
+        setGlobalLang("en");
         document.getElementById("email").placeholder = "Email address";
         document.getElementById("password").placeholder = "Password";
         document.getElementById("loginBtn").innerText = "Login";
     });
 
     document.getElementById("langFR").addEventListener("click", () => {
-        setLang("fr");
+        setGlobalLang("fr");
         document.getElementById("email").placeholder = "Adresse email";
         document.getElementById("password").placeholder = "Mot de passe";
         document.getElementById("loginBtn").innerText = "Connexion";
     });
 
-    // --- Connexion Firebase ---
+    // --- Firebase Login ---
     document.getElementById("loginBtn").addEventListener("click", () => {
         const email = document.getElementById("email").value;
         const password = document.getElementById("password").value;
