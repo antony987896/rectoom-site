@@ -8,28 +8,15 @@
             background-color: #000;
             color: #00ff66;
             font-family: Arial, sans-serif;
-            margin: 0;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
-        }
-
-        .card {
-            background-color: #0a0a0a;
-            border: 2px solid #00ff66;
-            border-radius: 12px;
-            padding: 40px;
-            width: 90%;
-            max-width: 420px;
             text-align: center;
-            box-shadow: 0 0 20px #00ff66;
+            margin: 0;
         }
 
         header {
+            padding: 20px;
             font-size: 32px;
             font-weight: bold;
-            margin-bottom: 20px;
+            border-bottom: 2px solid #00ff66;
         }
 
         .lang-btn {
@@ -39,7 +26,7 @@
             padding: 8px 18px;
             border-radius: 6px;
             font-size: 16px;
-            margin: 5px;
+            margin: 10px 5px;
             cursor: pointer;
         }
 
@@ -65,26 +52,26 @@
 </head>
 <body>
 
-<div class="card">
-    <header>RecToom — Profil</header>
+<header id="headerText">RecToom — Profil</header>
 
-    <!-- Language Buttons -->
-    <div>
-        <button class="lang-btn" id="langEN">EN</button>
-        <button class="lang-btn" id="langFR">FR</button>
-    </div>
-
-    <h1 id="title">Bienvenue !</h1>
-    <p id="userEmail">Chargement...</p>
-
-    <div class="btn" id="logoutBtn">Se déconnecter</div>
+<!-- Language Buttons -->
+<div>
+    <button class="lang-btn" id="langEN">EN</button>
+    <button class="lang-btn" id="langFR">FR</button>
 </div>
+
+<h1 id="title">Bienvenue !</h1>
+
+<p id="userEmail">Chargement...</p>
+
+<div class="btn" id="logoutBtn">Se déconnecter</div>
 
 <script type="module">
     import { logout, setGlobalLang } from "./main.js";
     import { getAuth, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-auth.js";
 
     const auth = getAuth();
+    let currentUserEmail = "";
 
     // Default language
     setGlobalLang("fr");
@@ -92,14 +79,20 @@
     // Language Switch
     document.getElementById("langEN").addEventListener("click", () => {
         setGlobalLang("en");
+        document.getElementById("headerText").innerText = "RecToom — Profile";
         document.getElementById("title").innerText = "Welcome!";
         document.getElementById("logoutBtn").innerText = "Logout";
+        document.getElementById("userEmail").innerText =
+            "Logged in as: " + currentUserEmail;
     });
 
     document.getElementById("langFR").addEventListener("click", () => {
         setGlobalLang("fr");
+        document.getElementById("headerText").innerText = "RecToom — Profil";
         document.getElementById("title").innerText = "Bienvenue !";
         document.getElementById("logoutBtn").innerText = "Se déconnecter";
+        document.getElementById("userEmail").innerText =
+            "Connecté en tant que : " + currentUserEmail;
     });
 
     // Auth Protection
@@ -107,8 +100,9 @@
         if (!user) {
             window.location.href = "index.html";
         } else {
+            currentUserEmail = user.email;
             document.getElementById("userEmail").innerText =
-                "Connecté en tant que : " + user.email;
+                "Connecté en tant que : " + currentUserEmail;
         }
     });
 
