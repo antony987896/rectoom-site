@@ -40,7 +40,20 @@
             font-weight: bold;
             cursor: pointer;
             display: inline-block;
-            margin-top: 25px;
+            margin-top: 20px;
+        }
+
+        #profilePic {
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            border: 3px solid #00ff66;
+            margin-top: 20px;
+            object-fit: cover;
+        }
+
+        input[type="file"] {
+            display: none;
         }
 
         #userEmail {
@@ -48,13 +61,19 @@
             margin-top: 10px;
             opacity: 0.9;
         }
+
+        #uploadStatus {
+            margin-top: 10px;
+            font-size: 16px;
+            opacity: 0.8;
+        }
     </style>
 </head>
 <body>
 
 <header id="headerText">RecToom — Profil</header>
 
-<!-- Language Buttons -->
+<!-- Langue -->
 <div>
     <button class="lang-btn" id="langEN">EN</button>
     <button class="lang-btn" id="langFR">FR</button>
@@ -62,28 +81,47 @@
 
 <h1 id="title">Bienvenue !</h1>
 
+<!-- Photo de profil -->
+<img id="profilePic" src="default.png">
+<br>
+<div class="btn" id="changePicBtn">Changer la photo</div>
+<input type="file" id="profilePicInput" accept="image/*">
+
+<!-- Email -->
 <p id="userEmail">Chargement...</p>
 
+<!-- Upload de fichiers du jeu -->
+<div class="btn" id="uploadGameBtn">Uploader un fichier du jeu</div>
+<input type="file" id="gameUpload">
+<p id="uploadStatus"></p>
+
+<!-- Bouton retour -->
+<a class="btn" href="index.html">← Retour</a>
+
+<!-- Logout -->
 <div class="btn" id="logoutBtn">Se déconnecter</div>
 
 <script type="module">
     import { logout, setGlobalLang } from "./main.js";
     import { getAuth, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-auth.js";
+    import { getStorage, ref, uploadBytes, getDownloadURL } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-storage.js";
 
     const auth = getAuth();
+    const storage = getStorage();
     let currentUserEmail = "";
 
-    // Default language
+    // Langue par défaut
     setGlobalLang("fr");
 
-    // Language Switch
+    // Changement de langue
     document.getElementById("langEN").addEventListener("click", () => {
         setGlobalLang("en");
         document.getElementById("headerText").innerText = "RecToom — Profile";
         document.getElementById("title").innerText = "Welcome!";
         document.getElementById("logoutBtn").innerText = "Logout";
-        document.getElementById("userEmail").innerText =
-            "Logged in as: " + currentUserEmail;
+        document.getElementById("changePicBtn").innerText = "Change picture";
+        document.getElementById("uploadGameBtn").innerText = "Upload game file";
+        document.getElementById("userEmail").innerText = "Logged in as: " + currentUserEmail;
     });
 
     document.getElementById("langFR").addEventListener("click", () => {
@@ -91,19 +129,60 @@
         document.getElementById("headerText").innerText = "RecToom — Profil";
         document.getElementById("title").innerText = "Bienvenue !";
         document.getElementById("logoutBtn").innerText = "Se déconnecter";
-        document.getElementById("userEmail").innerText =
-            "Connecté en tant que : " + currentUserEmail;
+        document.getElementById("changePicBtn").innerText = "Changer la photo";
+        document.getElementById("uploadGameBtn").innerText = "Uploader un fichier du jeu";
+        document.getElementById("userEmail").innerText = "Connecté en tant que : " + currentUserEmail;
     });
 
-    // Auth Protection
-    onAuthStateChanged(auth, (user) => {
+    // Auth
+    onAuthStateChanged(auth, async (user) => {
         if (!user) {
             window.location.href = "index.html";
         } else {
             currentUserEmail = user.email;
             document.getElementById("userEmail").innerText =
                 "Connecté en tant que : " + currentUserEmail;
+
+            // Charger la photo si elle existe
+            try {
+                const picRef = ref(storage, "profilePics/" + user.uid);
+                const url = await getDownloadURL(picRef);
+                document.getElementById("profilePic").src = url;
+            } catch (e) {
+                // Pas de photo → default.png
+            }
         }
+    });
+
+    // Changer la photo
+    document.getElementById("changePicBtn").addEventListener("click", () => {
+        document.getElementById("profilePicInput").click();
+    });
+
+    document.getElementById("profilePicInput").addEventListener("change", async (event) => {
+        const file = event.target.files[0];
+        const user = auth.currentUser;
+
+        const storageRef = ref(storage, "profilePics/" + user.uid);
+        await uploadBytes(storageRef, file);
+
+        const url = await getDownloadURL(storageRef);
+        document.getElementById("profilePic").src = url;
+    });
+
+    // Upload fichier du jeu
+    document.getElementById("uploadGameBtn").addEventListener("click", () => {
+        document.getElementById("gameUpload").click();
+    });
+
+    document.getElementById("gameUpload").addEventListener("change", async (event) => {
+        const file = event.target.files[0];
+        const user = auth.currentUser;
+
+        const storageRef = ref(storage, "gameUploads/" + user.uid + "/" + file.name);
+        await uploadBytes(storageRef, file);
+
+        document.getElementById("uploadStatus").innerText = "Upload réussi !";
     });
 
     // Logout
