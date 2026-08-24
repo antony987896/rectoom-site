@@ -12,23 +12,10 @@
       padding: 40px;
       text-align: center;
     }
-    h1 {
-      font-size: 40px;
-      margin-bottom: 20px;
-    }
-    h2 {
-      font-size: 28px;
-      margin-top: 30px;
-    }
-    p, div {
-      font-size: 18px;
-      margin-bottom: 10px;
-    }
-    a {
-      color: #00ff66;
-      text-decoration: none;
-      font-weight: bold;
-    }
+    h1 { font-size: 40px; margin-bottom: 20px; }
+    h2 { font-size: 28px; margin-top: 30px; }
+    p, div { font-size: 18px; margin-bottom: 10px; }
+    a { color: #00ff66; text-decoration: none; font-weight: bold; }
     .lang-btn {
       background-color: transparent;
       border: 2px solid #00ff66;
@@ -45,8 +32,8 @@
 
 <!-- Language Buttons -->
 <div>
-    <button class="lang-btn" id="frBtn">FR</button>
-    <button class="lang-btn" id="enBtn">EN</button>
+  <button class="lang-btn" id="frBtn">FR</button>
+  <button class="lang-btn" id="enBtn">EN</button>
 </div>
 
 <h1 id="title">Support Rectoom</h1>
@@ -85,15 +72,58 @@
   <a id="backLink" href="index.html">Retour à l’accueil</a>
 </p>
 
-<script type="module">
-    import { setGlobalLang } from "./main.js";
+<script>
+  const frTexts = {
+    title: "Support Rectoom",
+    intro: "Bienvenue sur la page officielle du support Rectoom.",
+    phoneTitle: "📞 Numéro du support",
+    phoneInfo: "+1 (579) 887‑6143\nAppels acceptés partout au Canada 🇨🇦\nLes numéros commençant par 800 et 888 sont aussi acceptés.",
+    emailTitle: "📧 Courriel du support",
+    emailInfo: "rectoom.contact@gmail.com\nVous pouvez envoyer un message si le support téléphonique est fermé.",
+    hoursTitle: "🕒 Heures d’ouverture",
+    timezone: "Fuseau horaire : UTC‑4 (Heure d’été du Québec)",
+    beforeDate: "Avant le 30 août 2026 :\nOuvert : 8h00\nFermé : 21h00",
+    afterDate: "Après le 30 août 2026 :\nOuvert : 15h30\nFermé : 20h00",
+    backTitle: "🔗 Retour au site Rectoom",
+    backLink: "Retour à l’accueil"
+  };
 
-    // Default language
-    setGlobalLang("fr");
+  const enTexts = {
+    title: "Rectoom Support",
+    intro: "Welcome to the official Rectoom support page.",
+    phoneTitle: "📞 Support phone number",
+    phoneInfo: "+1 (579) 887‑6143\nCalls accepted anywhere in Canada 🇨🇦\nNumbers starting with 800 and 888 are also accepted.",
+    emailTitle: "📧 Support email",
+    emailInfo: "rectoom.contact@gmail.com\nYou can send an email if phone support is closed.",
+    hoursTitle: "🕒 Opening hours",
+    timezone: "Timezone: UTC‑4 (Quebec daylight time)",
+    beforeDate: "Before August 30, 2026:\nOpen: 8:00\nClosed: 21:00",
+    afterDate: "After August 30, 2026:\nOpen: 15:30\nClosed: 20:00",
+    backTitle: "🔗 Back to Rectoom",
+    backLink: "Back to home"
+  };
 
-    // Language switch buttons
-    document.getElementById("frBtn").onclick = () => setGlobalLang("fr");
-    document.getElementById("enBtn").onclick = () => setGlobalLang("en");
+  function setLang(lang) {
+    const t = lang === "fr" ? frTexts : enTexts;
+    document.getElementById("title").textContent = t.title;
+    document.getElementById("intro").textContent = t.intro;
+    document.getElementById("phoneTitle").textContent = t.phoneTitle;
+    document.getElementById("phoneInfo").innerText = t.phoneInfo;
+    document.getElementById("emailTitle").textContent = t.emailTitle;
+    document.getElementById("emailInfo").innerText = t.emailInfo;
+    document.getElementById("hoursTitle").textContent = t.hoursTitle;
+    document.getElementById("timezone").textContent = t.timezone;
+    document.getElementById("beforeDate").innerText = t.beforeDate;
+    document.getElementById("afterDate").innerText = t.afterDate;
+    document.getElementById("backTitle").textContent = t.backTitle;
+    document.getElementById("backLink").textContent = t.backLink;
+  }
+
+  // langue par défaut
+  setLang("fr");
+
+  document.getElementById("frBtn").onclick = () => setLang("fr");
+  document.getElementById("enBtn").onclick = () => setLang("en");
 </script>
 
 </body>
