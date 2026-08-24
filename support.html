@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <title>Support Rectoom</title>
+  <style>
+    body {
+      background: #0a0a0f;
+      color: white;
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 40px;
+      text-align: center;
+    }
+    h1 {
+      font-size: 40px;
+      margin-bottom: 20px;
+    }
+    h2 {
+      font-size: 28px;
+      margin-top: 30px;
+    }
+    p, div {
+      font-size: 18px;
+      margin-bottom: 10px;
+    }
+    a {
+      color: #00ff66;
+      text-decoration: none;
+      font-weight: bold;
+    }
+    .lang-btn {
+      background-color: transparent;
+      border: 2px solid #00ff66;
+      color: #00ff66;
+      padding: 8px 18px;
+      border-radius: 6px;
+      font-size: 16px;
+      margin: 5px;
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+
+<!-- Language Buttons -->
+<div>
+    <button class="lang-btn" id="frBtn">FR</button>
+    <button class="lang-btn" id="enBtn">EN</button>
+</div>
+
+<h1 id="title">Support Rectoom</h1>
+<p id="intro">Bienvenue sur la page officielle du support Rectoom.</p>
+
+<h2 id="phoneTitle">📞 Numéro du support</h2>
+<p id="phoneInfo">
+  <strong>+1 (579) 887‑6143</strong><br>
+  Appels acceptés partout au Canada 🇨🇦<br>
+  <strong>Les numéros commençant par 800 et 888 sont aussi acceptés.</strong>
+</p>
+
+<h2 id="emailTitle">📧 Courriel du support</h2>
+<p id="emailInfo">
+  <strong>rectoom.contact@gmail.com</strong><br>
+  Vous pouvez envoyer un message si le support téléphonique est fermé.
+</p>
+
+<h2 id="hoursTitle">🕒 Heures d’ouverture</h2>
+<p id="timezone"><strong>Fuseau horaire :</strong> UTC‑4 (Heure d’été du Québec)</p>
+
+<div id="beforeDate">
+  <strong>Avant le 30 août 2026 :</strong><br>
+  Ouvert : 8h00<br>
+  Fermé : 21h00
+</div>
+
+<div id="afterDate">
+  <strong>Après le 30 août 2026 :</strong><br>
+  Ouvert : 15h30<br>
+  Fermé : 20h00
+</div>
+
+<h2 id="backTitle">🔗 Retour au site Rectoom</h2>
+<p>
+  <a id="backLink" href="index.html">Retour à l’accueil</a>
+</p>
+
+<script type="module">
+    import { setGlobalLang } from "./main.js";
+
+    // Default language
+    setGlobalLang("fr");
+
+    // Language switch buttons
+    document.getElementById("frBtn").onclick = () => setGlobalLang("fr");
+    document.getElementById("enBtn").onclick = () => setGlobalLang("en");
+</script>
+
+</body>
+</html>
