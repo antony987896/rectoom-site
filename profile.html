@@ -82,7 +82,7 @@
 <h1 id="title">Bienvenue !</h1>
 
 <!-- Photo de profil -->
-<img id="profilePic" src="default.png">
+<img id="profilePic" src="default.png" alt="Photo de profil">
 <br>
 <div class="btn" id="changePicBtn">Changer la photo</div>
 <input type="file" id="profilePicInput" accept="image/*">
@@ -92,7 +92,8 @@
 
 <!-- Upload de fichiers du jeu -->
 <div class="btn" id="uploadGameBtn">Uploader un fichier du jeu</div>
-<input type="file" id="gameUpload">
+<!-- restreint les types acceptés pour éviter les images -->
+<input type="file" id="gameUpload" accept=".zip,.glb,.gltf,.obj,application/zip,model/gltf-binary,model/gltf+json">
 <p id="uploadStatus"></p>
 
 <!-- Bouton retour -->
@@ -143,13 +144,14 @@
             document.getElementById("userEmail").innerText =
                 "Connecté en tant que : " + currentUserEmail;
 
-            // Charger la photo si elle existe
+            // Charger la photo si elle existe (chemin standardisé : profilePics/{uid}/avatar)
             try {
-                const picRef = ref(storage, "profilePics/" + user.uid);
+                const picRef = ref(storage, `profilePics/${user.uid}/avatar`);
                 const url = await getDownloadURL(picRef);
                 document.getElementById("profilePic").src = url;
             } catch (e) {
-                // Pas de photo → default.png
+                // Pas de photo → default.png (silent fallback)
+                console.log("Aucun avatar trouvé, utilisation de default.png");
             }
         }
     });
@@ -161,13 +163,36 @@
 
     document.getElementById("profilePicInput").addEventListener("change", async (event) => {
         const file = event.target.files[0];
+        if (!file) return;
+
         const user = auth.currentUser;
+        if (!user) {
+            alert("Utilisateur non connecté.");
+            return;
+        }
 
-        const storageRef = ref(storage, "profilePics/" + user.uid);
-        await uploadBytes(storageRef, file);
+        // Vérification MIME et taille (max 5MB)
+        if (!file.type || !file.type.startsWith("image/")) {
+            alert("Veuillez sélectionner une image valide (jpg/png).");
+            return;
+        }
+        const maxSize = 5 * 1024 * 1024;
+        if (file.size > maxSize) {
+            alert("Image trop grosse (max 5 MB).");
+            return;
+        }
 
-        const url = await getDownloadURL(storageRef);
-        document.getElementById("profilePic").src = url;
+        try {
+            const storageRef = ref(storage, `profilePics/${user.uid}/avatar`);
+            // Mettre le contentType en metadata via uploadBytes
+            await uploadBytes(storageRef, file, { contentType: file.type });
+            const url = await getDownloadURL(storageRef);
+            document.getElementById("profilePic").src = url;
+            document.getElementById("uploadStatus").innerText = "Photo de profil mise à jour.";
+        } catch (err) {
+            console.error(err);
+            alert("Erreur lors de l'upload de l'image.");
+        }
     });
 
     // Upload fichier du jeu
@@ -177,12 +202,35 @@
 
     document.getElementById("gameUpload").addEventListener("change", async (event) => {
         const file = event.target.files[0];
+        if (!file) return;
+
         const user = auth.currentUser;
+        if (!user) {
+            alert("Utilisateur non connecté.");
+            return;
+        }
 
-        const storageRef = ref(storage, "gameUploads/" + user.uid + "/" + file.name);
-        await uploadBytes(storageRef, file);
+        // Vérifier extension/type autorisé
+        const allowedExtensions = /\.(zip|glb|gltf|obj)$/i;
+        const allowedMime = [
+            'application/zip',
+            'model/gltf-binary',
+            'model/gltf+json',
+            'text/plain' // parfois .obj
+        ];
+        if (!allowedMime.includes(file.type) && !allowedExtensions.test(file.name)) {
+            alert("Type de fichier jeu non pris en charge. Utilisez .zip, .glb, .gltf, .obj");
+            return;
+        }
 
-        document.getElementById("uploadStatus").innerText = "Upload réussi !";
+        try {
+            const storageRef = ref(storage, `gameUploads/${user.uid}/${file.name}`);
+            await uploadBytes(storageRef, file, { contentType: file.type });
+            document.getElementById("uploadStatus").innerText = "Upload réussi !";
+        } catch (err) {
+            console.error(err);
+            alert("Erreur lors de l'upload du fichier de jeu.");
+        }
     });
 
     // Logout
