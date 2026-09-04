@@ -1,2 +1,6 @@
-# rectoom-site
-RecToom is a next‑generation social game built for creativity, exploration, and community. Players can join from PC, mobile, or VR and enjoy a world designed for interaction, fun, and freedom.
+# Site → Game integration branch
+
+Cette branche ajoute un bouton "Jouer" sur la page profile.html qui ouvre la page du jeu (à déployer sur GitHub Pages).
+
+Tester:
+- Déployer RecToom-jeu sur GitHub Pages (branche game-login ou main), puis ouvrir le bouton "Jouer" depuis ce site.

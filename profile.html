@@ -96,6 +96,9 @@
 <input type="file" id="gameUpload" accept=".zip,.glb,.gltf,.obj,application/zip,model/gltf-binary,model/gltf+json">
 <p id="uploadStatus"></p>
 
+<!-- Bouton Jouer -->
+<div class="btn" id="playBtn">Jouer</div>
+
 <!-- Bouton retour -->
 <a class="btn" href="index.html">← Retour</a>
 
@@ -231,6 +234,12 @@
             console.error(err);
             alert("Erreur lors de l'upload du fichier de jeu.");
         }
+    });
+
+    // Bouton Jouer ouvre la page jeu (déployer RecToom-jeu sur GitHub Pages pour que le lien fonctionne)
+    document.getElementById('playBtn').addEventListener('click', () => {
+        const url = 'https://antony987896.github.io/RecToom-jeu/game/index.html';
+        window.open(url, '_blank');
     });
 
     // Logout
