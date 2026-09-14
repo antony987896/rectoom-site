@@ -42,7 +42,7 @@ export function setGlobalLang(lang) {
 
 
 // --- Firebase Authentication ---
-import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
+import { initializeApp, getApps, getApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
 import { 
     getAuth,
     createUserWithEmailAndPassword,
@@ -56,13 +56,13 @@ const firebaseConfig = {
   apiKey: "AIzaSyBKDP95h9aH8Dq3OYMYPZZghy72kklb3Bg",
   authDomain: "rectoom-site.firebaseapp.com",
   projectId: "rectoom-site",
-  storageBucket: "rectoom-site.firebasestorage.app",
+  storageBucket: "rectoom-site.appspot.com",
   messagingSenderId: "907780061957",
   appId: "1:907780061957:web:5a5f856ee56a372fb4956c"
 };
 
-// Initialisation
-const app = initializeApp(firebaseConfig);
+// Initialisation sécurisée (éviter duplicate app error)
+const app = (!getApps().length) ? initializeApp(firebaseConfig) : getApp();
 const auth = getAuth(app);
 
 // Inscription
